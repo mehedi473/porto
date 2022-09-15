@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html {
+    @apply text-[95%] md:text-[98%] lg:text-[100%] scroll-smooth font-montserrat font-normal;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-heading my-4;
+  }
+  p {
+    @apply text-paragraph my-2;
+  }
+}
+@layer components {
+  .smooth-transition {
+    @apply transition duration-300 ease-linear;
+  }
+}
+.home-bg {
+  background-image: url(./images/home-bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
