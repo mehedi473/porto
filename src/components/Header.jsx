@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { CgMenu, CgMenuLeftAlt } from "react-icons/cg";
 const menuItems = [
   {
     id: 1,
@@ -40,24 +41,34 @@ const menuItems = [
   },
 ];
 const Header = () => {
+  const [menuIcon, setMenuIcon] = useState(false);
   return (
-    <header className="">
+    <header className="w-full h-auto fixed top-0 left-0 z-[999]]">
       <div className="container flex justify-between items-center py-6">
         {/* logo */}
         <NavLink to="/">
           <img src={logo} alt="logo" />
         </NavLink>
-        <div className="flex space-x-4">
+        <button
+          onClick={() => setMenuIcon(!menuIcon)}
+          className="md:hidden text-2xl font-bold p-2 mx-4 text-black rounded-md border border-primary transition duration-300 ease-in hover:bg-primary hover:text-white focus:bg-primary focus:text-white">
+          {menuIcon ? <CgMenuLeftAlt /> : <CgMenu />}
+        </button>
+        <div className="flex md:space-x-4">
           {/* menu items */}
-          <ul className="flex justify-between items-center space-x-4 capitalize text-base font-semibold">
+          <ul className={menuIcon ? "mobile-menu" : "menu"}>
             {menuItems.map((menu) => {
               const { id, name, link } = menu;
               return (
-                <li>
+                <li onClick={() => setMenuIcon(false)}>
                   <NavLink
                     key={id}
                     to={link}
-                    className="smooth-transition hover:text-primary">
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary"
+                        : "text-black smooth-transition hover:text-primary"
+                    }>
                     {name}
                   </NavLink>
                 </li>
